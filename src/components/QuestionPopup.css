@@ -1,0 +1,90 @@
+/* ----------------------------------
+   Feedback message : fondu / slide
+---------------------------------- */
+.feedback-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.feedback-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.feedback-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.feedback-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* ----------------------------------
+   Réponse utilisateur en gras
+---------------------------------- */
+.bold-answer {
+  font-weight: bold !important;
+  color: #2c3e50 !important;
+}
+
+/* Texte en gras dans input */
+.bold-input {
+  font-weight: bold !important;
+  color: #2c3e50;
+}
+
+/* ----------------------------------
+   Barre de progression question (multi)
+---------------------------------- */
+.progress-bar-container {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #3498db;
+  transition: width 0.4s ease-in-out;
+}
+
+.question-transition-bar {
+  height: 6px;
+  background: linear-gradient(to right, #3498db, #9b59b6);
+  animation: fillBar 1.2s ease-in-out forwards;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}/* ----------------------------------
+   Animation fade/slide entre questions
+---------------------------------- */
+.question-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.question-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.question-fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.question-fade-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
