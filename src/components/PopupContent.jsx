@@ -1,4 +1,3 @@
-// src/components/PopupContent.jsx
 import React, { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaGift } from "react-icons/fa";
 import QuestionPopup from "./QuestionPopup";
@@ -71,8 +70,13 @@ const PopupContent = React.memo(
         </div>
 
         {questionDone && (place.infoLong || place.infoPlus || place.photo) && (
-          <button onClick={handleOpenModal} className="button-en-savoir-plus">
-            <FaGift /> En savoir plus
+          <button
+            onClick={handleOpenModal}
+            className="btn btn-purple"
+            style={{ marginRight: "8px", marginBottom: "8px" }}
+          >
+            <FaGift style={{ marginRight: "6px" }} />
+            En savoir plus
           </button>
         )}
 
@@ -81,9 +85,17 @@ const PopupContent = React.memo(
         <button
           onClick={() => {
             playSound("buttonClick");
+            console.log("⚡ Clic ➡ Retour à la carte");
             onClose && onClose();
+            console.log("🔍 Après onClose, selectedPlace doit être null");
           }}
           className="popup-close-button"
+          style={{
+            marginRight: "8px",
+            marginBottom: "8px",
+            zIndex: 20000,         // on renforce le z-index
+            pointerEvents: "auto"  // on s’assure qu’il capte le clic
+          }}
         >
           🔙 Retour à la carte
         </button>

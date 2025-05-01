@@ -87,4 +87,21 @@
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 300ms ease, transform 300ms ease;
+}/* Espace entre tous les boutons de la popup */
+.question-container button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+/* pour être sûr que le dernier bouton de chaque ligne n’a pas de marge droite en trop */
+.question-container button:last-child {
+  margin-right: 0;
+}.popup-defi-container button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+/* Empêche l’auto-zoom Safari sur les inputs */
+.question-container input[type="text"] {
+  font-size: 16px;
+  /* tu peux conserver ta graisse via font-weight si tu veux */
 }

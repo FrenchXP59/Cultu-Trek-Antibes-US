@@ -1,9 +1,10 @@
-import React, { useRef } from "react"
-import { CSSTransition } from "react-transition-group"
-import "./DetailModal.css"
+// src/components/DetailModal.jsx
+import React, { useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+import "./DetailModal.css";
 
 const DetailModal = ({ place, onClose, show }) => {
-  const nodeRef = useRef(null)
+  const nodeRef = useRef(null);
 
   return (
     <CSSTransition
@@ -70,19 +71,17 @@ const DetailModal = ({ place, onClose, show }) => {
             </div>
           )}
 
+          {/* Bouton de fermeture */}
           <button
             onClick={onClose}
-            className="button-orange"
-            style={{
-              marginTop: "20px",
-            }}
+            className="button-close-modal"
           >
             Fermer
           </button>
         </div>
       </div>
     </CSSTransition>
-  )
-}
+  );
+};
 
-export default DetailModal
+export default DetailModal;

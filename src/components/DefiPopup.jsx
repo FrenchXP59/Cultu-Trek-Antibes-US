@@ -28,14 +28,19 @@ const DefiPopup = React.memo(({ place }) => {
       </p>
 
       <button
-        className={`button-orange ${isChallengeDone ? "validated" : ""}`}
+        className={`btn btn-turquoise ${isChallengeDone ? "validated" : ""}`}
         onClick={handleDefiComplete}
         disabled={isChallengeDone}
+        style={{ marginRight: "8px", marginBottom: "8px" }}
       >
         {isChallengeDone ? "✅ Défi validé !" : "🚀 J'ai fait le défi"}
       </button>
 
-      {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
+      {feedbackMessage && (
+        <p className="feedback-message" style={{ marginTop: "8px" }}>
+          {feedbackMessage}
+        </p>
+      )}
     </div>
   );
 });

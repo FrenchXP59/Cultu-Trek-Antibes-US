@@ -32,9 +32,6 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
   const isAnswered = answeredQuestions.includes(uniqueQuestionId);
   const progress = ((currentIndex + 1) / totalQuestions) * 100;
 
-  // Debug log pour vérifier les valeurs
-  console.log(`Progress - totalQuestions: ${totalQuestions}, currentIndex: ${currentIndex}, progress: ${progress}%`);
-
   const handleValidate = (providedAnswer) => {
     playSound("buttonClick");
     const answerToCheck = providedAnswer !== undefined ? providedAnswer : userAnswer;
@@ -52,7 +49,7 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
       );
       setQuestionDone(true);
       playSound("goodAnswer");
-      if (onQuestionDone) onQuestionDone();
+      onQuestionDone?.();
     } else {
       setErrorCount((prev) => prev + 1);
       if (errorCount === 0 && !indiceDisplayed) {
@@ -72,16 +69,17 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
         setFeedbackMessage(`❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`);
         answerQuestion(uniqueQuestionId);
         setQuestionDone(true);
-        if (onQuestionDone) onQuestionDone();
+        onQuestionDone?.();
       }
       playSound("wrongAnswer");
     }
+
     setUserAnswer("");
   };
 
   const handleNextQuestion = () => {
     playSound("buttonClick");
-    if (onQuestionDone) onQuestionDone();
+    onQuestionDone?.();
   };
 
   return (
@@ -114,7 +112,9 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
           <p style={{ color: "#888", fontSize: "0.9rem", marginBottom: "6px" }}>
             Question déjà répondue.
           </p>
-          <button onClick={handleNextQuestion}>Question suivante</button>
+          <button className="btn btn-purple" onClick={handleNextQuestion}>
+            Question suivante
+          </button>
         </div>
       ) : (
         <>
@@ -126,17 +126,21 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
                 onChange={(e) => setUserAnswer(e.target.value)}
                 className="bold-input"
               />
-              <button onClick={() => handleValidate()}>Valider</button>
+              <button className="btn btn-orange" onClick={() => handleValidate()}>
+                Valider
+              </button>
             </>
           )}
           {errorCount === 2 && (
             <>
-              <p><strong>Dernière chance (QCM) :</strong></p>
+              <p>
+                <strong>Dernière chance (QCM) :</strong>
+              </p>
               {question.qcm.map((option, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleValidate(option)}
-                  className="button-qcm"
+                  className="btn btn-blue button-qcm"
                 >
                   {option}
                 </button>
@@ -147,12 +151,7 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
       )}
 
       {/* Feedback */}
-      <CSSTransition
-        in={!!feedbackMessage}
-        timeout={300}
-        classNames="feedback"
-        unmountOnExit
-      >
+      <CSSTransition in={!!feedbackMessage} timeout={300} classNames="feedback" unmountOnExit>
         <div className="feedback-message" style={{ marginTop: "10px" }}>
           {feedbackMessage}
         </div>

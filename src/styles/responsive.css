@@ -1,51 +1,39 @@
-/* responsive.css */
+/* src/styles/responsive.css */
 
 /* ----------------------------------
    Variables CSS globales
 ---------------------------------- */
 :root {
-  --bg-light: #FDF3E7;
-  --txt-dark: #333;
-  --btn-yellow: #f1c40f;
-  --btn-yellow-hover: #f39c12;
-  --btn-orange: #e67e22;
-  --btn-orange-hover: #d35400;
-  --btn-purple: #9b59b6;
-  --btn-purple-hover: #8e44ad;
-  --btn-blue: #3498db;
-  --btn-blue-hover: #2980b9;
-  --btn-turquoise: #1abc9c;
-  --btn-turquoise-hover: #17a589;
-  --btn-grey: #ecf0f1;
-  --btn-grey-hover: #bdc3c7;
-  --radius: 6px;
-  --gap: 10px;
-  --font-base: 1rem;
-  --font-small: 0.9rem;
-  --btn-padding: 12px 20px;
-}
+  --bg-light:           #FDF3E7;
+  --txt-dark:           #333;
 
-/* ----------------------------------
-   Variables CSS globales
----------------------------------- */
-:root {
-  --bg-light: #FDF3E7;
-  --txt-dark: #333;
-  --btn-yellow: #f1c40f;
-  --btn-yellow-hover: #f39c12;
-  --btn-orange: #e67e22;
-  --btn-orange-hover: #d35400;
-  --btn-purple: #9b59b6;
-  --btn-purple-hover: #8e44ad;
-  --btn-blue: #3498db;
-  --btn-blue-hover: #2980b9;
-  --btn-grey: #ecf0f1;
-  --btn-grey-hover: #bdc3c7;
-  --radius: 6px;
-  --gap: 10px;
-  --font-base: 1rem;
-  --font-small: 0.9rem;
-  --btn-padding: 10px 16px;
+  --btn-yellow:         #f1c40f;
+  --btn-yellow-hover:   #f39c12;
+
+  --btn-orange:         #e67e22;
+  --btn-orange-hover:   #d35400;
+
+  --btn-purple:         #9b59b6;
+  --btn-purple-hover:   #8e44ad;
+
+  --btn-blue:           #3498db;
+  --btn-blue-hover:     #2980b9;
+
+  --btn-turquoise:      #1abc9c;
+  --btn-turquoise-hover:#17a589;
+
+  --btn-grey:           #ecf0f1;
+  --btn-grey-hover:     #bdc3c7;
+
+  --radius:             6px;
+  --gap:                10px;
+  --font-base:          1rem;
+  --font-small:         0.9rem;
+  --btn-padding:        12px 20px;
+
+  /* couleur du bouton fermer modal */
+  --btn-red:            #e74c3c;
+  --btn-red-hover:      #c0392b;
 }
 
 /* ----------------------------------
@@ -56,41 +44,38 @@
   font-size: var(--font-base);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              transform 0.2s ease;
   border: none;
 }
+.btn-yellow         { background: var(--btn-yellow);      color: var(--txt-dark); }
+.btn-yellow:hover   { background: var(--btn-yellow-hover);color: #fff; }
+.btn-orange         { background: var(--btn-orange);      color: #fff; }
+.btn-orange:hover   { background: var(--btn-orange-hover); }
+.btn-purple         { background: var(--btn-purple);      color: #fff; }
+.btn-purple:hover   { background: var(--btn-purple-hover); }
+.btn-blue           { background: var(--btn-blue);        color: #fff; }
+.btn-blue:hover     { background: var(--btn-blue-hover);  }
+.btn-turquoise      { background: var(--btn-turquoise);   color: #fff; }
+.btn-turquoise:hover{ background: var(--btn-turquoise-hover);}
+.btn-grey           { background: var(--btn-grey);        color: var(--txt-dark); }
+.btn-grey:hover     { background: var(--btn-grey-hover);  }
 
-.btn-yellow { background-color: var(--btn-yellow); color: var(--txt-dark); }
-.btn-yellow:hover { background-color: var(--btn-yellow-hover); color: #fff; }
-
-.btn-orange { background-color: var(--btn-orange); color: #fff; }
-.btn-orange:hover { background-color: var(--btn-orange-hover); }
-
-.btn-purple { background-color: var(--btn-purple); color: #fff; }
-.btn-purple:hover { background-color: var(--btn-purple-hover); }
-
-.btn-blue { background-color: var(--btn-blue); color: #fff; }
-.btn-blue:hover { background-color: var(--btn-blue-hover); }
-
-.btn-turquoise { background-color: var(--btn-turquoise); color: #fff; }
-.btn-turquoise:hover { background-color: var(--btn-turquoise-hover); }
-
-.btn-grey { background-color: var(--btn-grey); color: var(--txt-dark); }
-.btn-grey:hover { background-color: var(--btn-grey-hover); }
-
-/* État désactivé / validé */
 .btn:disabled,
-.btn-disabled,
 .validated {
   opacity: 0.7;
   cursor: default;
 }
-/* Scoreboard & Fin de partie
+
+/* ----------------------------------
+   Scoreboard & Fin de partie
 ---------------------------------- */
 .scoreboard-container {
   position: fixed;
-  top: var(--gap);
-  left: var(--gap);
+  /* sous la barre système (notch) en haut et à gauche */
+  top:    calc(env(safe-area-inset-top,   0px) + var(--gap));
+  left:   calc(env(safe-area-inset-left,  0px) + var(--gap));
   z-index: 9999;
   background-color: var(--bg-light);
   color: var(--txt-dark);
@@ -103,9 +88,24 @@
 
 .endgame-button {
   position: fixed;
-  top: var(--gap);
-  right: var(--gap);
-  z-index: 10000;
+  /* sous la barre système (notch) en haut et à droite */
+  top:    calc(env(safe-area-inset-top,   0px) + var(--gap));
+  right:  calc(env(safe-area-inset-right, 0px) + var(--gap));
+  z-index: 11000;
+  background-color: var(--btn-yellow);
+  color: var(--txt-dark);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: var(--font-base);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease,
+              box-shadow      0.2s ease;
+}
+
+.endgame-button:hover {
+  background-color: var(--btn-yellow-hover);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* ----------------------------------
@@ -121,203 +121,81 @@
 /* ----------------------------------
    Leaflet Popup minimal
 ---------------------------------- */
+.leaflet-popup,
+.leaflet-popup[style*="margin-left"] {
+  max-height: 90vh !important;
+  overflow-y: auto   !important;
+  overflow-x: hidden !important;
+  margin-left: 0     !important;
+}
+
 .leaflet-popup-content-wrapper {
   background-color: var(--bg-light) !important;
-  border-radius: var(--radius) !important;
+  border-radius: var(--radius)      !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+  min-height: 200px !important;
+  max-height: 90vh  !important;
+  overflow-wrap: break-word !important;
+  white-space: normal       !important;
 }
 
 .leaflet-popup-tip {
   background-color: var(--bg-light) !important;
-  border-color: var(--btn-yellow) !important;
-}
-
-.leaflet-popup {
-  max-height: 90vh !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  margin-left: 0 !important;
+  border: 2px solid var(--btn-orange) !important;
 }
 
 /* Titres et questions dans popup */
-.popup-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
-.popup-question { font-size: 1rem; font-weight: bold; margin-bottom: 12px; }
+.popup-title    { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.popup-question { font-size: 1rem;   font-weight: bold; margin-bottom: 12px; }
 
 /* ----------------------------------
    Barre de progression
 ---------------------------------- */
 .progress-label { font-size: var(--font-small); margin-bottom: 4px; }
 .progress-bar-wrapper { margin-bottom: var(--gap); }
-.progress-bar-wrapper .progress-bar-bg {
-  width: 100%; height: 8px; background: #ddd; border-radius: 4px; overflow: hidden;
+.progress-bar-bg {
+  width: 100%; height: 8px; background: #ddd;
+  border-radius: 4px; overflow: hidden;
 }
-.progress-bar-wrapper .progress-bar-fill {
-  height: 100%; background: var(--btn-blue); transition: width 0.3s ease;
+.progress-bar-fill {
+  width: auto; height: 100%; background: var(--btn-blue);
+  transition: width 0.3s ease;
 }
 
 /* ----------------------------------
    Feedback & Input
 ---------------------------------- */
-.feedback-message { font-style: italic; color: #2c3e50; margin-top: 10px; }
-.bold-input { font-weight: bold; color: #2c3e50; }
+.feedback-message { font-style: italic; color: #2c3e50; margin-top: var(--gap); }
+.bold-input       { font-weight: bold; color: #2c3e50; }
 
 /* ----------------------------------
    Boutons de défi et QCM
 ---------------------------------- */
 .challenge-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap);
+  display: flex; flex-wrap: wrap; gap: var(--gap);
   margin: var(--gap) 0;
 }
 .button-qcm {
-  width: auto;
+  padding: var(--btn-padding);
+  font-size: var(--font-base);
 }
 
 /* ----------------------------------
    Message géolocalisation
 ---------------------------------- */
-.geo-message { margin-top: 10px; font-style: italic; color: #2c3e50; }
+.geo-message { margin-top: var(--gap); font-style: italic; color: #2c3e50; }
 
 /* ----------------------------------
-   Intro Video Buttons
+   Bannière MAJ & Intro vidéo
 ---------------------------------- */
-.button-intro { /* réutiliser .btn + variantes pour couleur */ }
-.intro-buttons-container {
-  position: fixed;
-  bottom: var(--gap);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: var(--gap);
-  z-index: 12000;
-}
-
-/* ----------------------------------
-   Media Queries regroupées
----------------------------------- */
-@media (max-width: 768px) {
-  .scoreboard-container { font-size: 0.8rem; padding: 4px 6px; }
-  .leaflet-popup-content-wrapper { max-width: 90vw !important; }
-  .popup-content { width: 90vw; max-width: 350px; margin: 0 auto; }
-}
-
-@media (max-width: 480px) {
-  .endgame-button { top: 60px; font-size: clamp(0.9rem, 2vw, 1rem); }
-  .popup-content { padding-top: 36px; }
-  .intro-buttons-container { flex-direction: column; width: 90%; bottom: 15px; }
-  .button-intro { width: 100%; font-size: var(--font-small); padding: 10px; }
-  .button-qcm { display: block; width: 100%; margin: 6px 0; }
-}
-
-@media (max-width: 375px) {
-  .leaflet-popup .leaflet-popup-content { max-width: 240px !important; padding-right: 6px; }
-}
-
-@media (max-width: 360px) {
-  .leaflet-popup .leaflet-popup-content { max-width: 260px !important; padding-right: 8px; }
-  .progress-label {
-    font-size: 1rem;
-    background: rgba(255,255,255,0.8);
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-  .progress-bar-wrapper { margin-bottom: 16px; }
-}
-
-/* ----------------------------------
-   Couleurs & interactions spécifiques
----------------------------------- */
-
-/* Terminer la partie - hover shadow */
-.endgame-button:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-/* Boutons Intro (desktop & mobile) */
-.button-intro {
-  padding: var(--btn-padding);
-  font-size: var(--font-base);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-.button-intro-sound {
-  background-color: var(--btn-turquoise);
-  color: #fff;
-}
-.button-intro-sound:hover {
-  background-color: var(--btn-turquoise-hover);
-}
-.button-intro-play {
-  background-color: var(--btn-orange);
-  color: #fff;
-}
-.button-intro-play:hover {
-  background-color: var(--btn-orange-hover);
-}
-
-/* Bouton "En savoir plus" */
-.button-en-savoir-plus {
-  background-color: var(--btn-turquoise) !important;
-  color: #fff !important;
-}
-.button-en-savoir-plus:hover {
-  background-color: var(--btn-turquoise-hover) !important;
-}
-
-/* Bouton "Retour à la carte" / fermer popup */
-.popup-close-button {
-  background-color: var(--btn-orange) !important;
-  color: #fff !important;
-  border: none !important;
-}
-.popup-close-button:hover {
-  background-color: var(--btn-orange-hover) !important;
-}
-/* Après la section “Couleurs & interactions spécifiques” */
-.button-en-savoir-plus,
-.popup-close-button {
-  margin-right: var(--gap);
-  margin-bottom: var(--gap);
-}.endgame-button {
-  background-color: var(--btn-yellow);
-  color: var(--txt-dark);
-}
-.endgame-button:hover {
-  background-color: var(--btn-yellow-hover);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-/* src/components/IntroVideo.css */
-.intro-video-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: black;
-}
-
-.intro-video-iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.intro-buttons-container {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 1000;
-}
+/* bannière de notification de nouvelle version */
 .update-banner {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: var(--btn-turquoise);
   color: #fff; text-align: center;
   padding: 12px; font-weight: bold;
-  display: flex; justify-content: center; align-items: center; gap: 12px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; z-index: 12000;
 }
 .update-banner button {
   padding: 6px 12px;
@@ -328,3 +206,56 @@
 .update-banner button:hover {
   background: var(--btn-yellow-hover);
 }
+
+/* wrapper plein écran */
+.intro-video-wrapper {
+  display: flex; flex-direction: column;
+  height: 100vh; background: black;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+/* iframe YouTube non-cliquable */
+.intro-video-iframe {
+  flex: 1; width: 100%; object-fit: contain;
+  /* suppression de pointer-events ici : on gère ça dans IntroVideo.css */
+}
+/* boutons flottants */
+.intro-buttons-container {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom,0px) + var(--gap));
+  left: 50%; transform: translateX(-50%);
+  display: flex; flex-wrap: wrap;
+  gap: 12px; justify-content: center;
+  padding: 0 12px; z-index: 12000;
+
+  /* force la capture de clic sur les boutons */
+  pointer-events: auto !important;
+}
+/* ----------------------------------
+   Bouton “Fermer” de la modale “En savoir plus”
+---------------------------------- */
+:root {
+  --btn-red: #e74c3c;
+  --btn-red-hover: #c0392b;
+}
+
+.button-close-modal {
+  background-color: var(--btn-red) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+  margin: var(--gap) auto 0 auto !important; /* centré */
+  display: block !important;
+}
+
+.button-close-modal:hover {
+  background-color: var(--btn-red-hover) !important;
+}
+/* ----------------------------------
+   Media Queries
+---------------------------------- */
+@media (max-width: 768px) {
+  .scoreboard-container { font-size: 0.8rem; padding: 4px 6px; }
+  .leaflet-popup-content-wrapper { max
