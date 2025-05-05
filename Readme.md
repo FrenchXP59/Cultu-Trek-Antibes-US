@@ -1,37 +1,44 @@
-🧭 Cultu Trek – Panique à Antipolis
+🧭 Cultu Trek – Panic in Antipolis
 
-🎮 Application web interactive développée en React + Vite
-📅 Mars 2025
-👤 Auteur : Legrand Frédéric
-🏷️ Projet intégré à la collection "Les Carnets Duo"
+🎮 Interactive web app built with React & Vite
+📅 March 2025
+👤 Author: Frédéric Legrand
+🏷️ Part of the “Les Carnets Duo” collection
 
-🎯 Présentation
+⸻
 
-Cultu Trek – Panique à Antipolis est un jeu de piste scénarisé dans les rues du Vieil Antibes.
-Le joueur suit un parcours ponctué de questions, de défis photos, de QR codes, et de petites énigmes historiques dans un format à la fois ludique et culturel.
-L’univers visuel et sonore immerge le visiteur dans l’histoire cachée d’Antibes, entre anecdotes et patrimoine.
+🎯 Overview
 
-✅ Fonctionnalités en cours
+Cultu Trek – Panic in Antipolis is a story-driven urban treasure hunt through the winding streets of Old Antibes. Players follow a geolocated route peppered with history quizzes, photo challenges, QR-code puzzles, and local anecdotes. A rich audiovisual design immerses visitors in Antibes’ hidden stories, blending fun gameplay with cultural discovery.
 
-🗺️ Carte interactive avec étapes géolocalisées
-🏛️ Focus sur les lieux emblématiques du centre historique
-❓ Questions / QCM liées à l’histoire et aux détails visibles sur place
-📷 Défis photo et missions à réaliser sur le terrain
-🔊 Ambiances sonores immersives (à venir)
-📍 Intégration avec QR code dans le journal de voyage papier
-🛠️ Technologies utilisées
+⸻
 
-React
-Vite
-OpenStreetMap
-[Autres à venir]
-🔐 Statut & droits
+✅ Features (in development)
+  •	🗺️ Interactive map with geolocated stops
+  •	🏛️ Detailed profiles of historic landmarks
+  •	❓ On-site questions & multiple-choice quizzes
+  •	📷 Photo challenges and field missions
+  •	🔊 Immersive soundscapes (coming soon)
+  •	📍 QR-code integration for the paper travel journal
 
-Les Carnets Duo est une création originale de Legrand Frédéric, incluant des contenus textuels, graphiques et numériques, protégés par le droit d’auteur.
+⸻
 
-📁 Voir le fichier LICENSE.md pour plus de détails sur les droits et usages.
+🛠️ Tech Stack
+  •	React
+  •	Vite
+  •	OpenStreetMap
+  •	…and more to come
 
-🧪 Lancer l’application localement
+⸻
 
+🔐 License & Rights
+
+Cultu Trek is an original creation by Frédéric Legrand. All text, graphics, code, and multimedia content are protected by copyright. See LICENSE.md for full details.
+
+⸻
+
+🧪 Local Setup
 npm install
 npm run dev
+Enjoy your adventure through Antipolis!
+Let me know if you’d like any tweaks

@@ -14,106 +14,117 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
   const [errorCount, setErrorCount] = useState(0);
   const [questionDone, setQuestionDone] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [indiceDisplayed, setIndiceDisplayed] = useState(false);
+  const [hintShown, setHintShown] = useState(false);
 
   useEffect(() => {
     setUserAnswer("");
     setErrorCount(0);
     setQuestionDone(false);
     setFeedbackMessage("");
-    setIndiceDisplayed(false);
+    setHintShown(false);
   }, [question]);
 
-  if (!question) return <p>Aucune question pour ce lieu.</p>;
+  if (!question) return <p>No question for this location.</p>;
 
   const totalQuestions = place.questions.length;
   const currentIndex = place.questions.findIndex((q) => q.id === question.id);
-  const uniqueQuestionId = `${place.id}-${question.id}`;
-  const isAnswered = answeredQuestions.includes(uniqueQuestionId);
+  const uniqueId = `${place.id}-${question.id}`;
+  const isAnswered = answeredQuestions.includes(uniqueId);
   const progress = ((currentIndex + 1) / totalQuestions) * 100;
 
-  const handleValidate = (providedAnswer) => {
+  const handleValidate = (provided) => {
     playSound("buttonClick");
-    const answerToCheck = providedAnswer !== undefined ? providedAnswer : userAnswer;
-    const correct = isCorrectAnswer(answerToCheck, question.reponses_acceptables);
+    const answer = provided !== undefined ? provided : userAnswer;
+    const correct = isCorrectAnswer(answer, question.reponses_acceptables);
 
     if (correct) {
-      const pointsToAdd = errorCount === 0 ? 1 : 0.5;
-      incrementScore(pointsToAdd);
-      answerQuestion(uniqueQuestionId);
+      const points = errorCount === 0 ? 1 : 0.5;
+      incrementScore(points);
+      answerQuestion(uniqueId);
       setFeedbackMessage(
         <div style={{ display: "flex", alignItems: "center", color: "green", fontWeight: "bold" }}>
           <FaCheckCircle style={{ marginRight: "6px", fontSize: "1.2rem" }} />
-          Bonne réponse !
+          Correct answer!
         </div>
       );
       setQuestionDone(true);
       playSound("goodAnswer");
       onQuestionDone?.();
     } else {
-      setErrorCount((prev) => prev + 1);
-      if (errorCount === 0 && !indiceDisplayed) {
+      setErrorCount((e) => e + 1);
+      playSound("wrongAnswer");
+
+      if (errorCount === 0 && !hintShown) {
         setFeedbackMessage(
           <div style={{ display: "flex", flexDirection: "column", color: "#ff9800" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <FaInfoCircle style={{ marginRight: "6px", fontSize: "1.2rem" }} />
-              Indice disponible !
+              Hint available!
             </div>
             <p style={{ marginLeft: "24px", color: "#555" }}>{question.indice}</p>
           </div>
         );
-        setIndiceDisplayed(true);
+        setHintShown(true);
       } else if (errorCount === 1) {
-        setFeedbackMessage("2ème erreur : passage au QCM !");
+        setFeedbackMessage("Second mistake: switch to multiple choice!");
       } else {
-        setFeedbackMessage(`❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`);
-        answerQuestion(uniqueQuestionId);
+        setFeedbackMessage(
+          `❌ Wrong answer. The correct answer was: ${question.bonne_reponse}`
+        );
+        answerQuestion(uniqueId);
         setQuestionDone(true);
         onQuestionDone?.();
       }
-      playSound("wrongAnswer");
     }
 
     setUserAnswer("");
   };
 
-  const handleNextQuestion = () => {
+  const handleNext = () => {
     playSound("buttonClick");
     onQuestionDone?.();
   };
 
   return (
     <div className="question-container">
-      {/* Barre de progression */}
+      {/* Progress bar */}
       {totalQuestions > 1 && (
         <div style={{ marginBottom: "12px" }}>
           <div style={{ marginBottom: "4px", fontSize: "0.9rem" }}>
-            Question {currentIndex + 1} sur {totalQuestions}
+            Question {currentIndex + 1} of {totalQuestions}
           </div>
-          <div style={{ width: "100%", height: "8px", background: "#ddd", borderRadius: "4px", overflow: "hidden" }}>
+          <div
+            style={{
+              width: "100%",
+              height: "8px",
+              background: "#ddd",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+          >
             <div
               style={{
                 width: `${progress}%`,
                 height: "100%",
                 background: "#2196f3",
-                transition: "width 0.3s ease"
+                transition: "width 0.3s ease",
               }}
             />
           </div>
         </div>
       )}
 
-      {/* Question */}
+      {/* The question text */}
       <p>{question.question}</p>
 
-      {/* Réponse ou QCM */}
+      {/* Answer input or multiple choice */}
       {(questionDone || isAnswered) ? (
         <div>
           <p style={{ color: "#888", fontSize: "0.9rem", marginBottom: "6px" }}>
-            Question déjà répondue.
+            Question already answered.
           </p>
-          <button className="btn btn-purple" onClick={handleNextQuestion}>
-            Question suivante
+          <button className="btn btn-purple" onClick={handleNext}>
+            Next question
           </button>
         </div>
       ) : (
@@ -125,24 +136,25 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 className="bold-input"
+                placeholder="Your answer"
               />
               <button className="btn btn-orange" onClick={() => handleValidate()}>
-                Valider
+                Submit
               </button>
             </>
           )}
           {errorCount === 2 && (
             <>
               <p>
-                <strong>Dernière chance (QCM) :</strong>
+                <strong>Last chance (multiple choice):</strong>
               </p>
-              {question.qcm.map((option, idx) => (
+              {question.qcm.map((opt, i) => (
                 <button
-                  key={idx}
-                  onClick={() => handleValidate(option)}
+                  key={i}
+                  onClick={() => handleValidate(opt)}
                   className="btn btn-blue button-qcm"
                 >
-                  {option}
+                  {opt}
                 </button>
               ))}
             </>
@@ -150,7 +162,7 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
         </>
       )}
 
-      {/* Feedback */}
+      {/* Feedback message */}
       <CSSTransition in={!!feedbackMessage} timeout={300} classNames="feedback" unmountOnExit>
         <div className="feedback-message" style={{ marginTop: "10px" }}>
           {feedbackMessage}
@@ -162,6 +174,5 @@ const QuestionPopup = ({ place, question, onQuestionDone }) => {
 
 export default React.memo(
   QuestionPopup,
-  (prevProps, nextProps) =>
-    prevProps.place === nextProps.place && prevProps.question === nextProps.question
+  (prev, next) => prev.place === next.place && prev.question === next.question
 );

@@ -85,7 +85,8 @@ function MainApp() {
       {!popupOpen && <ScoreBoard />}
       {!popupOpen && (
         <button onClick={handleEndGame} className="endgame-button">
-          Terminer la partie
+          Finish Game
+
         </button>
       )}
 

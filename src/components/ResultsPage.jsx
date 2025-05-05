@@ -6,9 +6,9 @@ const ResultsPage = () => {
 
   return (
     <div>
-      <h2>Résultats du Jeu</h2>
-      <p>Score final : {score}</p>
-      <p>Temps total : {time} secondes</p>
+      <h2>Game Results</h2>
+      <p>Final Score : {score}</p>
+      <p>Total Time : {time} secondes</p>
       <button onClick={resetGame}>Rejouer</button>
     </div>
   );

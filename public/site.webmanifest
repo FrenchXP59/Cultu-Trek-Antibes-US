@@ -1,0 +1,24 @@
+{
+  "name": "Cultu-Trek US",
+  "short_name": "CultuTrekUS",
+  "description": "Self-guided cultural walk through Antibes’ Old Town",
+  "icons": [
+    {
+      "src": "/images/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "scope": "/",
+  "theme_color": "#1abc9c",
+  "background_color": "#FDF3E7",
+  "display": "standalone"
+}

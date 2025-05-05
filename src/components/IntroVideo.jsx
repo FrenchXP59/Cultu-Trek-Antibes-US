@@ -43,14 +43,16 @@ const IntroVideo = ({ isMuted, onEnableSoundAndGeo, onEnterGame }) => {
           onClick={onEnableSoundAndGeo}
           className="btn btn-turquoise button-intro-sound"
         >
-          🎧 Activer le son + Géolocalisation
+          🎧 Enable Sound & Location
+
         </button>
 
         <button
           onClick={onEnterGame}
           className="btn btn-orange button-intro-play"
         >
-          🎁 Accéder au jeu
+          🎁 Enter Game
+
         </button>
       </div>
     </div>

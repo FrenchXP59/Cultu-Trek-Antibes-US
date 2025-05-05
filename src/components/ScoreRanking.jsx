@@ -53,7 +53,8 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
             cursor: "pointer",
           }}
         >
-          🗺️ Retour à la carte
+          🗺️ Back to Map
+
         </button>
 
         <button
@@ -67,7 +68,8 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
             cursor: "pointer",
           }}
         >
-          🔄 Rejouer une partie
+          🔄 Play Again
+
         </button>
       </div>
     </div>

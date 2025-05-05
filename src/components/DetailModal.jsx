@@ -76,7 +76,7 @@ const DetailModal = ({ place, onClose, show }) => {
             onClick={onClose}
             className="button-close-modal"
           >
-            Fermer
+            Close
           </button>
         </div>
       </div>

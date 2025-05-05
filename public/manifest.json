@@ -1,7 +1,9 @@
 {
-  "name": "Cultu-Trek Antibes",
-  "short_name": "Cultu-Trek",
+  "name": "Cultu-Trek Antibes US",
+  "short_name": "Cultu-Trek US",
+  "description": "Self-guided cultural walking tour of Antibes’ Old Town",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",

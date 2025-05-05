@@ -32,10 +32,10 @@ const ScoreBoard = () => {
         Score : {score} point{score !== 1 ? "s" : ""}
       </h3>
       <p style={{ margin: "4px 0 0" }}>
-        Temps : {minutes}m {seconds}s
+        Time : {minutes}m {seconds}s
       </p>
       <p style={{ margin: "4px 0 0" }}>
-        Questions répondues : {answeredQuestions.length}
+        Questions answered : {answeredQuestions.length}
       </p>
     </div>
   );

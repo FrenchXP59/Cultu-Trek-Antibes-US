@@ -32,14 +32,14 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
 
     const { lat, lng } = userLocation;
     const dist = getDistance(lat, lng, targetLatitude, targetLongitude);
-    console.log("📍 Distance calculée :", dist, "m");
+    console.log("📍 Calculated distance :", dist, "m");
 
     if (dist <= 300) {
       setScore((prev) => prev + pointReward);
-      setMessage(`✅ Bravo ! À ${Math.round(dist)} m du point.`);
+      setMessage(`✅ Well done! You are ${Math.round(dist)} m from the point.`);
       setValidated(true);
     } else {
-      setMessage(`📏 Vous êtes à ${Math.round(dist)} m. Rapprochez-vous encore.`);
+      setMessage(`📏 📏 You are ${Math.round(dist)} m away. Please move closer.`);
     }
   };
 
@@ -52,10 +52,11 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
         style={{ marginTop: "10px" }}
       >
         {validated
-          ? "✅ Position validée"
+          ? "✅ Location confirmed!"
           : loadingLoc
-          ? "📍 Récupération position…"
-          : "📍 Valider ma position"}
+          ? "⏳ Fetching location…"
+          : "📍 Confirm my location"
+        }
       </button>
 
       {message && (
