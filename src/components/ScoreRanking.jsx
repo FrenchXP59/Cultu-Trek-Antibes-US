@@ -6,7 +6,7 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
 
   useEffect(() => {
     const storedScores = JSON.parse(localStorage.getItem("gameScores")) || [];
-    storedScores.sort((a, b) => b.score - a.score); // Tri décroissant
+    storedScores.sort((a, b) => b.score - a.score); // sort descending
     setScores(storedScores);
   }, []);
 
@@ -19,15 +19,15 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
         minHeight: "100vh",
       }}
     >
-      <h2>🏆 Classement des Scores</h2>
+      <h2>🏆 Score Ranking</h2>
 
       {scores.length === 0 ? (
-        <p>Aucun score enregistré pour le moment.</p>
+        <p>No scores recorded yet.</p>
       ) : (
         <ol>
           {scores.map((item, index) => (
             <li key={index} style={{ marginBottom: "8px" }}>
-              <strong>{item.score}</strong> points – {item.time} secondes –{" "}
+              <strong>{item.score}</strong> points – {item.time} seconds –{" "}
               {new Date(item.date).toLocaleString()}
             </li>
           ))}
@@ -47,14 +47,13 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
           style={{
             padding: "10px 20px",
             backgroundColor: "#95a5a6",
-            color: "white",
+            color: "#fff",
             border: "none",
             borderRadius: "6px",
             cursor: "pointer",
           }}
         >
           🗺️ Back to Map
-
         </button>
 
         <button
@@ -62,15 +61,38 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
           style={{
             padding: "10px 20px",
             backgroundColor: "#f39c12",
-            color: "white",
+            color: "#fff",
             border: "none",
             borderRadius: "6px",
             cursor: "pointer",
           }}
         >
           🔄 Play Again
-
         </button>
+      </div>
+
+      {/* ----- Buy Me a Coffee ----- */}
+      <div style={{ marginTop: "40px", textAlign: "center" }}>
+        <a
+          href="https://buymeacoffee.com/lescarnetsduo"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-block",
+            backgroundColor: "#f1c40f",
+            padding: "10px 20px",
+            color: "#333",
+            borderRadius: "6px",
+            textDecoration: "none",
+            fontWeight: "bold",
+            boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+            transition: "background-color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f39c12")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f1c40f")}
+        >
+          ☕ Support this project on Buy Me a Coffee
+        </a>
       </div>
     </div>
   );
