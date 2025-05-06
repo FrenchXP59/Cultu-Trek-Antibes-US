@@ -14,7 +14,7 @@ const IntroVideo = ({ isMuted, onEnableSoundAndGeo, onEnterGame }) => {
   }, [onEnableSoundAndGeo, onEnterGame]);
 
   // URL YouTube
-  const baseUrl = "https://www.youtube.com/embed/1731MS_RPOY";
+  const baseUrl = "https://www.youtube.com/embed/u8QqFHwgDbI";
   const params = [
     "autoplay=1",
     "controls=1",
